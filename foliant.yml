@@ -1,0 +1,15 @@
+title: Nutrition Watch
+
+# Оглавление
+chapters:
+  - index.md
+  - requirements/interview.md
+  - requirements/requirements.md
+  - requirements/use-case.md
+  - requirements/class-diagram.md
+
+backend_config:
+  mkdocs:
+    mkdocs.yml:
+      theme:
+        name: material
