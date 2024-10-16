@@ -5,16 +5,48 @@ left to right direction
 ' Роли
 :Тренер: as couch
 :Пользователь: as user <<Клиент>>
-:Приложение: as app
+:Приложение: as app <<Следим за питанием>>
 
-usecase (Зарегистрироваться в приложении)
-usecase (Создать рецепт)
-usecase (Найти продукт в БД)
-usecase (Посмотреть статистистику)
-usecase (Посмотреть график)
-usecase (Посмотреть среднее за месяц)
-usecase (Внести данные измерений)
-usecase (Внести масссу)
+' Варианты
+
+usecase (Зарегистрироваться в приложении) as uc_reg
+usecase (Редактировать профиль) as uc_edit_profile
+usecase (Войти в приложение) as uc_sign_in
+
+usecase (Отобразить каллории из расчёта массы) as show_callories
+
+usecase (Посмотреть статистистику) as view_stat
+usecase (Посмотреть среднее за месяц) as view_average
+usecase (Посмотреть график) as view_chart
+
+usecase (Внести данные измерений) as enter_data
+usecase (Внести масссу) as add_mass
+usecase (Ввести дату) as add_date
+
+' Рецепты могут создать и пользователи и клиенты
+usecase (Создать рецепт) as create_recipe
+usecase (Выбрать продукт в БД) as uc_check_eat
+usecase (Внести массу продукта) as uc_add_eat
+
+usecase (Выбрать рецепт из меню) as choose_recipe
+usecase (Редактировать рецепт) as edit_recipe
+
+usecase (Посмотреть рецепт) as view_recipe
+
+usecase (Настроить фильтры) as configure_filters
+
+
+usecase (Посмотреть историю и график) as view_history_schedule
+usecase (Выбрать период день/неделя/месяц/год) as select_period
+
+usecase (Посмотреть рацион клиента) as view_diet
+
+' Связи
+
+user --> uc_reg
+uc_reg <.. uc_edit_profile
+user --> uc_sign_in
+uc_sign_in <.. uc_edit_profile : extend
 
 
 @enduml
