@@ -11,8 +11,6 @@ skinparam packageStyle rectangle
 couch -->  user 
 
 
-' Варианты
-
 usecase uc_reg  as "Зарегистрироваться
 в приложении"
 usecase uc_edit_profile  as "Редактировать профиль"
@@ -32,10 +30,10 @@ usecase add_mass as "Внести масссу"
 usecase add_dateas "Ввести дату"
 
 ' Рецепты могут создать и пользователи и клиенты
-usecase (Создать рецепт) as create_recipe
-usecase (Выбрать продукт в БД) as uc_check_eat
+usecase create_recipe  as "Создать рецепт"
+usecase uc_check_eat as "Выбрать продукт в БД"
 
-usecase (Внести массу продукта) as uc_add_eat
+usecase uc_add_eat  as "Внести массу продукта"
 
 usecase choose_recipe as "Выбрать рецепт из меню
 тренера"
