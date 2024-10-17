@@ -6,6 +6,7 @@ chapters:
   - requirements/interview.md
   - requirements/requirements.md
   - requirements/use-case.md
+  - requirements/user-story.md
   - requirements/class-diagram.md
 
 backend_config:
