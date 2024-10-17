@@ -1,52 +1,91 @@
 @startuml
 
 left to right direction
+skinparam packageStyle rectangle
 
 ' Роли
 :Тренер: as couch
 :Пользователь: as user <<Клиент>>
 :Приложение: as app <<Следим за питанием>>
 
+couch -->  user 
+
+
 ' Варианты
 
-usecase (Зарегистрироваться в приложении) as uc_reg
-usecase (Редактировать профиль) as uc_edit_profile
-usecase (Войти в приложение) as uc_sign_in
+usecase uc_reg  as "Зарегистрироваться
+в приложении"
+usecase uc_edit_profile  as "Редактировать профиль"
+usecase  uc_sign_in as "Войти в приложение"
 
-usecase (Отобразить каллории из расчёта массы) as show_callories
+usecase show_callories as "Отобразить каллории
+из расчёта
+массы продукта"
 
-usecase (Посмотреть статистистику) as view_stat
-usecase (Посмотреть среднее за месяц) as view_average
-usecase (Посмотреть график) as view_chart
+usecase view_stat as "Посмотреть статистистику"
+usecase view_average as "Посмотреть среднее
+за месяц"
 
-usecase (Внести данные измерений) as enter_data
-usecase (Внести масссу) as add_mass
-usecase (Ввести дату) as add_date
+usecase enter_data  as "Внести данные
+измерений"
+usecase add_mass as "Внести масссу"
+usecase add_dateas "Ввести дату"
 
 ' Рецепты могут создать и пользователи и клиенты
 usecase (Создать рецепт) as create_recipe
 usecase (Выбрать продукт в БД) as uc_check_eat
+
 usecase (Внести массу продукта) as uc_add_eat
 
-usecase (Выбрать рецепт из меню) as choose_recipe
-usecase (Редактировать рецепт) as edit_recipe
+usecase choose_recipe as "Выбрать рецепт из меню
+тренера"
+usecase save_recipe as "Добавить рецепт
+в дневной рацион"
+usecase edit_recipe  as "Редактировать рецепт"
 
-usecase (Посмотреть рецепт) as view_recipe
+usecase view_recipe as "Посмотреть рецепт"
 
-usecase (Настроить фильтры) as configure_filters
+usecase configure_filters as "Настроить фильтры"
 
 
-usecase (Посмотреть историю и график) as view_history_schedule
-usecase (Выбрать период день/неделя/месяц/год) as select_period
-
-usecase (Посмотреть рацион клиента) as view_diet
+usecase view_history_schedule  as "Посмотреть историю
+и график"
+usecase select_period as "Выбрать период:
+день/неделя/месяц/год"
+usecase select_kitchen as "Выбрать уровень
+сложности приготовления"
+usecase view_diet as "Посмотреть рацион клиента"
 
 ' Связи
 
 user --> uc_reg
-uc_reg <.. uc_edit_profile
+uc_reg <.. uc_edit_profile : extend
 user --> uc_sign_in
 uc_sign_in <.. uc_edit_profile : extend
 
+user --> enter_data
+enter_data <.. add_mass : include
+enter_data <.. add_date : include
 
+user --> create_recipe
+create_recipe <.. uc_check_eat : include
+create_recipe <.. uc_add_eat : include
+
+user --> choose_recipe
+user --> edit_recipe
+choose_recipe <.. view_recipe : extend
+choose_recipe <.. save_recipe : extend
+
+user --> view_stat
+view_stat <.. view_average : extend
+view_stat <.. view_history_schedule : extend
+view_stat <.. configure_filters : extend
+configure_filters <.. select_period : extend
+configure_filters <.. select_kitchen :extend
+
+
+app --> show_callories
+uc_check_eat <.. show_callories : includes
+
+couch --> view_diet
 @enduml
