@@ -5,16 +5,16 @@ skinparam packageStyle rectangle
 
 ' Роли
 :Тренер: as couch
-:Пользователь: as user <<Клиент>>
+:Авторизованный пользователь: as user <<Клиент>>
+:Неавторизованный пользователь: as un_user
 :Приложение: as app <<Следим за питанием>>
 
 couch -->  user 
 
-
 usecase uc_reg  as "Зарегистрироваться
 в приложении"
 usecase uc_edit_profile  as "Редактировать профиль"
-usecase  uc_sign_in as "Войти в приложение"
+usecase  uc_sign_in as "Авторизоваться в приложении"
 
 usecase show_callories as "Отобразить каллории
 из расчёта
@@ -56,7 +56,7 @@ usecase view_diet as "Посмотреть рацион клиента"
 
 ' Связи
 
-user --> uc_reg
+un_user --> uc_reg
 uc_reg <.. uc_edit_profile : extend
 user --> uc_sign_in
 uc_sign_in <.. uc_edit_profile : extend
