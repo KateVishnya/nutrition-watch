@@ -8,6 +8,7 @@ skinparam packageStyle rectangle
 :Авторизованный пользователь: as user <<Клиент>>
 :Неавторизованный пользователь: as un_user
 :Приложение: as app <<Следим за питанием>>
+:База данных: as database <<Продукты>>
 
 couch -->  user 
 
@@ -83,6 +84,7 @@ configure_filters <.. select_kitchen :extend
 
 
 app --> show_callories
+uc_check_eat <.. database : includes
 uc_check_eat <.. show_callories : includes
 
 couch --> view_diet
