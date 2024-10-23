@@ -9,8 +9,24 @@ chapters:
   - requirements/user-story.md
   - requirements/class-diagram.md
 
+preprocessors:
+    - includes
+    - plantuml:
+        cache_dir: .diagramscache
+        plantuml_path: plantuml
+        format: png
+        params:
+            parse_raw: true
+            as_image: true
 backend_config:
   mkdocs:
+    site_name: Дипломный проект "Следим за питанием"
+    site_author: Екатерина Московская
     mkdocs.yml:
       theme:
         name: material
+        highlightjs: true
+
+
+      
+      
